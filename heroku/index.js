@@ -45,4 +45,12 @@ app.post('/instagram', function(req, res) {
   res.sendStatus(200);
 });
 
+app.get('/webhook', function (req, res) {
+  if (req.query['hub.verify_token'] === 'CAARb1RMiNpQBAKoGKZBy0ZA5SK1FRGWiZCavRZB4W9ZBeBQr63pJAZBRfAUtpNN42RmcdFQCfnLhT5szEKOW4cideP7EVZA7wlXxeunf3q0eXta92UPjgHkUM9IAIE6uoIbaNLvKp2EZAe2XVOx3fpPS6mzRmdsmryqvozJGi4JlVl8svobFeUUgTYPyFFkfFvcZD') {
+    res.send(req.query['hub.challenge']);
+  } else {
+    res.send('Error, wrong validation token');    
+  }
+});
+
 app.listen();
